@@ -20,6 +20,9 @@ Vagrant.configure("2") do |config|
   # config.vm.box_check_update = false
 
   config.vm.hostname = "modernphp.local"
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.manage_guest = true
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
