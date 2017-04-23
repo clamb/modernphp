@@ -28,14 +28,16 @@ Installation
 ============
 
 1. Créer un répertoire `vagrant` sur votre disque (à la racine de `C:\\` sur Windows, dans votre home sur MacOS).
-2. Copier les fichiers `Vagrantfile`, `modernphp.local.conf` et `setup.sh` dans le dossier `vagrant` créé ci-dessus
-3. Ouvrez une fenêtre de terminal (ou ligne de commande) et se déplacer dans le répertoire `vagrant`
+2. Ouvrez une fenêtre de terminal (ou ligne de commande) et se déplacer dans le répertoire `vagrant`
    (`cd C:\\vagrant` avec Windows, `cd ~/vagrant` avec MacOS).
-4. `vagrant plugin install vagrant-auto_netword`.
-5. `vagrant plugin install vagrant-hostmanager`.
-6. Pour démarrer le téléchargement et l'installation de la machine virtuelle, exécuter la commande `vagrant up`.
-7. Le plugin `hostmanager` permet de mettre à jour votre fichier `hosts` pour que l'adresse `modernphp.local` soit
+3. Exécutez la commande `git clone https://github.com/media-cpnv-ch/modernphp`
+4. Déplacez-vous dans le dossier modernphp `cd modernphp`
+5. Installez les plugin `auto_network` et `hostmanager` :
+      1. `vagrant plugin install vagrant-auto_network`
+      2. `vagrant plugin install vagrant-hostmanager`
+   Le plugin `hostmanager` permet de mettre à jour votre fichier `hosts` pour que l'adresse `modernphp.local` soit
    dirigé vers votre machine. Pour cela, exécuter la commande `vagrant hostmanager`.
-8. Vérifier l'installation en vous connectant sur votre machine : `vagrant ssh`.
-9. Vérifier le bon fonctionnement de la machine et des applications en ouvrant l'adresse `http://modernphp.local`
+6. Pour démarrer le téléchargement et l'installation de la machine virtuelle, exécuter la commande `vagrant up`.
+7. Vérifier l'installation en vous connectant sur votre machine : `vagrant ssh`.
+8. Vérifier le bon fonctionnement de la machine et des applications en ouvrant l'adresse `http://modernphp.local`
    ou `https://modernphp.local`
