@@ -8,8 +8,7 @@ Les logiciels suivants sont installés :
 
 * Ubuntu 16.04
 * Apache2
-* MariaDB Server (dernière version au moment de l'installation)
-* PHP 7.0 (avec mysql, intl, mbstring, json, cli et xml)
+* MariaDB Server (dernière version au moment de l'installation) * PHP 7.0 (avec mysql, intl, mbstring, json, cli et xml) 
 
 De plus, un certificat auto-signé est généré automatiquement lors du 
 provisionnement de la machine.
@@ -22,7 +21,7 @@ Contenu
 * `modernphp.local.conf` : le fichier de configuration d'apache
 * `setup.sh` : le shell bash qui est exécuté dans la VM lorsqu'elle est provisionnée
 * `www/index.html` : un fichier d'exemple
-* `www/phpinfo.php` : pour obtenir les fichiers de configuration
+* `www/info.php` : pour obtenir les fichiers de configuration
 
 Installation
 ============
