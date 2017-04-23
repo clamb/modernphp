@@ -19,8 +19,8 @@ Contenu
 * Vagrantfile : le fichier de configuration de la machine virtuelle
 * modernphp.local.conf : le fichier de configuration d'apache
 * setup.sh : le shell bash qui est exécuté dans la VM lorsqu'elle est provisionnée 
-* htdocs/index.html : un fichier d'exemple
-* htdocs/phpinfo.php : pour obtenir les fichiers de configuration
+* www/index.html : un fichier d'exemple
+* www/phpinfo.php : pour obtenir les fichiers de configuration
 
 Installation
 ============
