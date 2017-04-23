@@ -2,7 +2,7 @@ Information
 ===========
 
 Modernphp est une machine virtuelle pour le développement web dans le cadre
-des cours d'informatique web du CPNV.
+des cours d'informatique web de la filière média du CPNV.
 
 Les logiciels suivants sont installés :
 
@@ -18,7 +18,7 @@ Contenu
 * Readme.md : ce fichier
 * Vagrantfile : le fichier de configuration de la machine virtuelle
 * modernphp.local.conf : le fichier de configuration d'apache
-* setup.sh : le shell bash qui est exécuté dans la VM lorsqu'elle est provisionnée 
+* setup.sh : le shell bash qui est exécuté dans la VM lorsqu'elle est provisionnée
 * www/index.html : un fichier d'exemple
 * www/phpinfo.php : pour obtenir les fichiers de configuration
 
