@@ -11,6 +11,8 @@ Les logiciels suivants sont installés :
 * MariaDB Server (dernière version au moment de l'installation)
 * PHP 7.0 (avec mysql, intl, mbstring, json, cli et xml
 
+De plus, un certificat auto-signé est généré automatiquement lors du 
+provisionnement de la machine.
 
 Contenu
 =======
@@ -35,4 +37,5 @@ Installation
 7. Le plugin `hostmanager` permet de mettre à jour votre fichier `hosts` pour que l'adresse `modernphp.local` soit
    dirigé vers votre machine. Pour cela, exécuter la commande `vagrant hostmanager`.
 8. Vérifier l'installation en vous connectant sur votre machine : `vagrant ssh`.
-9. Vérifier le bon fonctionnement de la machine et des applications en ouvrant l'adresse `http://modernphp.local/index.html`
+9. Vérifier le bon fonctionnement de la machine et des applications en ouvrant l'adresse `http://modernphp.local`
+   ou `https://modernphp.local`
