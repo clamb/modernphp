@@ -9,7 +9,7 @@ Les logiciels suivants sont installés :
 * Ubuntu 16.04
 * Apache2
 * MariaDB Server (dernière version au moment de l'installation)
-* PHP 7.0 (avec mysql, intl, mbstring, json, cli et xml
+* PHP 7.0 (avec mysql, intl, mbstring, json, cli et xml)
 
 De plus, un certificat auto-signé est généré automatiquement lors du 
 provisionnement de la machine.
