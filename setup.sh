@@ -5,7 +5,7 @@
 # Description: 
 #   Ce script installe les packages nécessaires pour du développement
 #   web dans le cadre des cours web de la média. Il est appelé par 
-#   le fichier VagrantFile.
+#   le fichier Vagrantfile.
 
 VAGRANTDIR=/vagrant
 SERVERDIR=/var/www/modernphp
