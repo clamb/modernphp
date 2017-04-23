@@ -9,6 +9,7 @@
 
 VAGRANTDIR=/vagrant
 SERVERDIR=/var/www/modernphp
+SSLCERTDIR=/etc/ssl/crt
 
 apt-get update
 apt-get install -y vim
@@ -26,6 +27,13 @@ apt-get install -y php7.0-xml
 sudo cp $VAGRANTDIR/modernphp.local.conf /etc/apache2/sites-available/modernphp.local.conf
 sudo ln -sf /etc/apache2/sites-available/modernphp.local.conf /etc/apache2/sites-enabled/modernphp.local.conf
 sudo rm -rf /etc/apache2/sites-enabled/000-default.conf
+
+echo "Creating self-signed certificate"
+sudo rm -rf $SSLCERTDIR
+sudo mkdir $SSLCERTDIR
+sudo openssl req -x509 -nodes -days 3650 -subj '/C=CH/ST=Vaud/L=Ste-Croix/CN=modernphp.local/O=CPNV/OU=Media' -newkey rsa:2048 -keyout $SSLCERTDIR/modernphp.local.key -out $SSLCERTDIR/modernphp.local.crt
+
+sudo ln -sf /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
 
 # Utilise le php.ini de développement
 sudo mv /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2.php.ini.bk
