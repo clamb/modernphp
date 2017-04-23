@@ -17,12 +17,12 @@ provisionnement de la machine.
 Contenu
 =======
 
-* Readme.md : ce fichier
-* Vagrantfile : le fichier de configuration de la machine virtuelle
-* modernphp.local.conf : le fichier de configuration d'apache
-* setup.sh : le shell bash qui est exécuté dans la VM lorsqu'elle est provisionnée
-* www/index.html : un fichier d'exemple
-* www/phpinfo.php : pour obtenir les fichiers de configuration
+* `Readme.md` : ce fichier
+* `Vagrantfile` : le fichier de configuration de la machine virtuelle
+* `modernphp.local.conf` : le fichier de configuration d'apache
+* `setup.sh` : le shell bash qui est exécuté dans la VM lorsqu'elle est provisionnée
+* `www/index.html` : un fichier d'exemple
+* `www/phpinfo.php` : pour obtenir les fichiers de configuration
 
 Installation
 ============
