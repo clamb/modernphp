@@ -35,9 +35,9 @@ Installation
 5. Installez les plugin `auto_network` et `hostmanager` :
       1. `vagrant plugin install vagrant-auto_network`
       2. `vagrant plugin install vagrant-hostmanager`
-   Le plugin `hostmanager` permet de mettre à jour votre fichier `hosts` pour que l'adresse `modernphp.local` soit
-   dirigé vers votre machine. Pour cela, exécuter la commande `vagrant hostmanager`.
-6. Pour démarrer le téléchargement et l'installation de la machine virtuelle, exécuter la commande `vagrant up`.
-7. Vérifier l'installation en vous connectant sur votre machine : `vagrant ssh`.
-8. Vérifier le bon fonctionnement de la machine et des applications en ouvrant l'adresse `http://modernphp.local`
+6. Le plugin `hostmanager` permet de mettre à jour votre fichier `hosts` pour que l'adresse `modernphp.local` soit
+   dirigé vers la machine virtuelle. Pour cela, exécuter la commande `vagrant hostmanager`.
+7. Pour démarrer le téléchargement et l'installation de la machine virtuelle, exécuter la commande `vagrant up`.
+8. Vérifier l'installation en vous connectant sur votre machine : `vagrant ssh`.
+9. Vérifier le bon fonctionnement de la machine et des applications en ouvrant l'adresse `http://modernphp.local`
    ou `https://modernphp.local`
