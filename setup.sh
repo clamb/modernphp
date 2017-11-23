@@ -2,9 +2,9 @@
 
 # Autheur: Christophe Lambercy (christophe.lambercy@cpnv.ch)
 # Date: 04.04.2017
-# Description: 
+# Description:
 #   Ce script installe les packages nécessaires pour du développement
-#   web dans le cadre des cours web de la média. Il est appelé par 
+#   web dans le cadre des cours web de la média. Il est appelé par
 #   le fichier Vagrantfile.
 
 VAGRANTDIR=/vagrant
@@ -23,6 +23,11 @@ apt-get install -y php7.0-mbstring
 apt-get install -y php7.0-json
 apt-get install -y php7.0-cli
 apt-get install -y php7.0-xml
+apt-get install -y php7.0-gd
+apt-get install -y php7.0-curl
+
+# Some cleanup
+apt autoremove -y
 
 sudo cp $VAGRANTDIR/modernphp.local.conf /etc/apache2/sites-available/modernphp.local.conf
 sudo ln -sf /etc/apache2/sites-available/modernphp.local.conf /etc/apache2/sites-enabled/modernphp.local.conf
@@ -34,6 +39,9 @@ sudo mkdir $SSLCERTDIR
 sudo openssl req -x509 -nodes -days 3650 -subj '/C=CH/ST=Vaud/L=Ste-Croix/CN=modernphp.local/O=CPNV/OU=Media' -newkey rsa:2048 -keyout $SSLCERTDIR/modernphp.local.key -out $SSLCERTDIR/modernphp.local.crt
 
 sudo ln -sf /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
+
+# Pour que les permaliens fonctionnent avec Wordpress
+sudo ln -sf /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
 
 # Utilise le php.ini de développement
 sudo mv /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2.php.ini.bk
@@ -59,4 +67,3 @@ echo "create database if not exists wp" | mysql -u root -pcpnv4321
 echo "grant all privileges on wp.* to 'cpnvdev'@'localhost' identified by 'cpnv1234' with grant option" | mysql -u root -pcpnv4321
 
 echo "flush privileges" | mysql -u root -pcpnv4321
-

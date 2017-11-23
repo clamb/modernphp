@@ -13,6 +13,25 @@ Les logiciels suivants sont installés :
 De plus, un certificat auto-signé est généré automatiquement lors du 
 provisionnement de la machine.
 
+Base de données
+===============
+
+Deux bases de données sont créées :
+
+* `cpnvdev` -> pour le développement web.
+* `wp` -> pour Wordpress si vous deviez en avoir besoin.
+
+L'utilisateur `cpnvdev/cpnv1234` dispose de tous les droits sur ces deux bases de données.
+
+Si vous souhaitez vous connecter à la base de données en `root/cpnv4321`, vous devez le faire directement
+depuis la machine en utilisant la commande `sudo` : 
+
+1. `vagrant ssh`
+2. `sudo mysql -u root -pcpnv4321`
+
+Ceci car le plugin `unix_socket` est installé, ce qui oblige `root` de se connecter avec une session `root`,
+rendant `sudo` obligatoire.
+
 Contenu
 =======
 
@@ -22,6 +41,7 @@ Contenu
 * `setup.sh` : le shell bash qui est exécuté dans la VM lorsqu'elle est provisionnée
 * `www/index.html` : un fichier d'exemple
 * `www/info.php` : pour obtenir les fichiers de configuration
+* `sequel_pro_modernphp.plist` : pour vous connecter sur les bases de données avec Sequel Pro (Mac OS)
 
 Installation
 ============
