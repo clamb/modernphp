@@ -8,9 +8,9 @@ Les logiciels suivants sont installés :
 
 * Ubuntu 16.04
 * Apache2
-* MariaDB Server (dernière version au moment de l'installation) * PHP 7.0 (avec mysql, intl, mbstring, json, cli et xml) 
+* MariaDB Server (dernière version au moment de l'installation) * PHP 7.0 (avec mysql, intl, mbstring, json, cli et xml)
 
-De plus, un certificat auto-signé est généré automatiquement lors du 
+De plus, un certificat auto-signé est généré automatiquement lors du
 provisionnement de la machine.
 
 Base de données
@@ -45,6 +45,7 @@ Contenu
 
 Installation
 ============
+Avant de commencer, assurez-vous d'avoir VirtualBox installé sur votre ordinateur. Installez une version compatible avec vagrant: https://www.vagrantup.com/docs/virtualbox/. 
 
 1. Créer un répertoire `vagrant` sur votre disque (à la racine de `C:\\` sur Windows, dans votre home sur MacOS).
 2. Ouvrez une fenêtre de terminal (ou ligne de commande) et se déplacer dans le répertoire `vagrant`
