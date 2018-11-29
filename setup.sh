@@ -14,17 +14,17 @@ SSLCERTDIR=/etc/ssl/crt
 apt-get update
 apt-get install -y vim
 apt-get install -y apache2
-apt-get install -y libapache2-mod-php7.0
+apt-get install -y libapache2-mod-php7.2
 apt-get install -y mariadb-server
-apt-get install -y php7.0
-apt-get install -y php7.0-mysql
-apt-get install -y php7.0-intl
-apt-get install -y php7.0-mbstring
-apt-get install -y php7.0-json
-apt-get install -y php7.0-cli
-apt-get install -y php7.0-xml
-apt-get install -y php7.0-gd
-apt-get install -y php7.0-curl
+apt-get install -y php7.2
+apt-get install -y php7.2-mysql
+apt-get install -y php7.2-intl
+apt-get install -y php7.2-mbstring
+apt-get install -y php7.2-json
+apt-get install -y php7.2-cli
+apt-get install -y php7.2-xml
+apt-get install -y php7.2-gd
+apt-get install -y php7.2-curl
 
 # Some cleanup
 apt autoremove -y
@@ -44,8 +44,8 @@ sudo ln -sf /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.l
 sudo ln -sf /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
 
 # Utilise le php.ini de développement
-sudo mv /etc/php/7.0/apache2/php.ini /etc/php/7.0/apache2.php.ini.bk
-sudo cp /usr/lib/php/7.0/php.ini-development /etc/php/7.0/apache2/php.ini
+sudo mv /etc/php/7.2/apache2/php.ini /etc/php/7.2/apache2.php.ini.bk
+sudo cp /usr/lib/php/7.2/php.ini-development /etc/php/7.2/apache2/php.ini
 
 sudo systemctl restart apache2.service
 
