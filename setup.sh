@@ -11,11 +11,16 @@ VAGRANTDIR=/vagrant
 SERVERDIR=/var/www/modernphp
 SSLCERTDIR=/etc/ssl/crt
 
+# This is to install mariadb 10.4 (18.04 comes with 10.1 by default)
+apt-get install software-properties-common
+apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
+add-apt-repository "deb [arch=amd64,arm64,ppc64el] http://mariadb.mirror.liquidtelecom.com/repo/10.4/ubuntu $(lsb_release -cs) main"
+
 apt-get update
 apt-get install -y vim
 apt-get install -y apache2
 apt-get install -y libapache2-mod-php7.2
-apt-get install -y mariadb-server
+apt-get install -y mariadb-server mariadb-client
 apt-get install -y php7.2
 apt-get install -y php7.2-mysql
 apt-get install -y php7.2-intl
@@ -25,6 +30,7 @@ apt-get install -y php7.2-cli
 apt-get install -y php7.2-xml
 apt-get install -y php7.2-gd
 apt-get install -y php7.2-curl
+apt-get install -y php7.2-zip
 
 # Some cleanup
 apt autoremove -y
