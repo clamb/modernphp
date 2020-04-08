@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# Autheur: Christophe Lambercy (christophe.lambercy@arcaciel.ch)
+# Auteur: Christophe Lambercy (christophe.lambercy@arcaciel.ch)
 # Date: 04.04.2017
 # Description:
 #   Ce script installe les packages nécessaires pour du développement
-#   web dans le cadre des cours web de la média. Il est appelé par
-#   le fichier Vagrantfile.
+#   web il est appelé par le VagrantFile.
 
 VAGRANTDIR=/vagrant
 SERVERDIR=/var/www/modernphp
