@@ -43,6 +43,9 @@ sudo openssl req -x509 -nodes -days 3650 -subj '/C=CH/ST=Vaud/L=Orbe/CN=modernph
 
 sudo ln -sf /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
 
+# Configure mysql en mode traditionel (plus strict)
+sudo cp $VAGRANTDIR/mysql.cnf /etc/mysql/conf.d/mysql.cnf
+
 # Pour que les permaliens fonctionnent avec Wordpress
 sudo ln -sf /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
 
