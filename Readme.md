@@ -1,7 +1,6 @@
 # Information
 
-Modernphp est une machine virtuelle pour le développement web dans le cadre
-des cours d'informatique web de la filière média du CPNV.
+Modernphp est une machine virtuelle pour le développement web.
 
 Les logiciels suivants sont installés :
 
@@ -16,16 +15,16 @@ provisionnement de la machine.
 
 Deux bases de données sont créées :
 
-- `cpnvdev` -> pour le développement web.
+- `phpdev` -> pour le développement web.
 - `wp` -> pour Wordpress si vous deviez en avoir besoin.
 
-L'utilisateur `cpnvdev/cpnv1234` dispose de tous les droits sur ces deux bases de données.
+L'utilisateur `phpdev/php1234` dispose de tous les droits sur ces deux bases de données.
 
-Si vous souhaitez vous connecter à la base de données en `root/cpnv4321`, vous devez le faire directement
+Si vous souhaitez vous connecter à la base de données en `root/php4321`, vous devez le faire directement
 depuis la machine en utilisant la commande `sudo` :
 
 1. `vagrant ssh`
-2. `sudo mysql -u root -pcpnv4321`
+2. `sudo mysql -u root -pphp4321`
 
 Ceci car le plugin `unix_socket` est installé, ce qui oblige `root` à connecter avec une session `root`, rendant `sudo` obligatoire.
 
@@ -46,7 +45,7 @@ Avant de commencer, assurez-vous d'avoir VirtualBox installé sur votre ordinate
 1. Créer un répertoire `vagrant` sur votre disque (à la racine de `C:\\` sur Windows, dans votre home sur MacOS).
 2. Ouvrez une fenêtre de terminal (ou ligne de commande) et se déplacer dans le répertoire `vagrant`
    (`cd C:\\vagrant` avec Windows, `cd ~/vagrant` avec MacOS).
-3. Exécutez la commande `git clone https://github.com/media-cpnv-ch/modernphp`
+3. Exécutez la commande `git clone https://github.com/clamb/modernphp`
 4. Déplacez-vous dans le dossier modernphp `cd modernphp`
 5. Installez les plugin `auto_network` et `hostmanager` :
    1. `vagrant plugin install vagrant-auto_network`
