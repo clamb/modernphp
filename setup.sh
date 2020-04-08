@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Autheur: Christophe Lambercy (christophe.lambercy@cpnv.ch)
+# Autheur: Christophe Lambercy (christophe.lambercy@arcaciel.ch)
 # Date: 04.04.2017
 # Description:
 #   Ce script installe les packages nécessaires pour du développement
@@ -8,7 +8,7 @@
 #   le fichier Vagrantfile.
 
 VAGRANTDIR=/vagrant
-SERVERDIR=/var/www/bantam
+SERVERDIR=/var/www/modernphp
 SSLCERTDIR=/etc/ssl/crt
 
 # Required for older php version
@@ -33,14 +33,14 @@ apt-get install -y php7.3-curl
 # Some cleanup
 apt autoremove -y
 
-sudo cp $VAGRANTDIR/bantam.local.conf /etc/apache2/sites-available/bantam.local.conf
-sudo ln -sf /etc/apache2/sites-available/bantam.local.conf /etc/apache2/sites-enabled/bantam.local.conf
+sudo cp $VAGRANTDIR/modernphp.local.conf /etc/apache2/sites-available/modernphp.local.conf
+sudo ln -sf /etc/apache2/sites-available/modernphp.local.conf /etc/apache2/sites-enabled/modernphp.local.conf
 sudo rm -rf /etc/apache2/sites-enabled/000-default.conf
 
 echo "Creating self-signed certificate"
 sudo rm -rf $SSLCERTDIR
 sudo mkdir $SSLCERTDIR
-sudo openssl req -x509 -nodes -days 3650 -subj '/C=CH/ST=Vaud/L=Ste-Croix/CN=bantam.local/O=CPNV/OU=Media' -newkey rsa:2048 -keyout $SSLCERTDIR/bantam.local.key -out $SSLCERTDIR/bantam.local.crt
+sudo openssl req -x509 -nodes -days 3650 -subj '/C=CH/ST=Vaud/L=Orbe/CN=modernphp.local/O=Arcaciel/OU=Dev' -newkey rsa:2048 -keyout $SSLCERTDIR/modernphp.local.key -out $SSLCERTDIR/modernphp.local.crt
 
 sudo ln -sf /etc/apache2/mods-available/ssl.load /etc/apache2/mods-enabled/ssl.load
 
@@ -60,17 +60,17 @@ fi
 
 # Mariadb stuff
 # By default, mysql uses the plugin "unix_socket" for root. Therefore, you need to sudo when using mysql.
-/usr/bin/mysqladmin -s -u root password 'cpnv4321' || echo "** Mot de passe probablement déjà défini **"
+/usr/bin/mysqladmin -s -u root password 'php4321' || echo "** Mot de passe probablement déjà défini **"
 
-echo "Crée une base de données pour le web (cpnvdev)"
-echo "create database if not exists cpnvdev" | mysql -u root -pcpnv4321
-echo "grant all privileges on cpnvdev.* to 'cpnvdev'@'localhost' identified by 'cpnv1234' with grant option" | mysql -u root -pcpnv4321
+echo "Crée une base de données pour le web (phpdev)"
+echo "create database if not exists phpdev" | mysql -u root -pphp4321
+echo "grant all privileges on phpdev.* to 'phpdev'@'localhost' identified by 'php1234' with grant option" | mysql -u root -pphp4321
 
 echo "Crée un base de données pour wordpress (wp)"
-echo "create database if not exists wp" | mysql -u root -pcpnv4321
-echo "grant all privileges on wp.* to 'cpnvdev'@'localhost' identified by 'cpnv1234' with grant option" | mysql -u root -pcpnv4321
+echo "create database if not exists wp" | mysql -u root -pphp4321
+echo "grant all privileges on wp.* to 'phpdev'@'localhost' identified by 'php1234' with grant option" | mysql -u root -pphp4321
 
-echo "flush privileges" | mysql -u root -pcpnv4321
+echo "flush privileges" | mysql -u root -pphp4321
 
 # Add the user vagrant to the adm group so that it can read logs
 adduser vagrant adm
