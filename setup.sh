@@ -16,18 +16,21 @@ add-apt-repository -y ppa:ondrej/php
 apt-get update
 apt-get upgrade -y
 apt-get install -y vim
-apt-get install -y apache2
-apt-get install -y libapache2-mod-php7.3
+apt-get install -y apache2 libapache2-mod-fcgid
 apt-get install -y mariadb-server
-apt-get install -y php7.3
-apt-get install -y php7.3-mysql
-apt-get install -y php7.3-intl
-apt-get install -y php7.3-mbstring
-apt-get install -y php7.3-json
-apt-get install -y php7.3-cli
-apt-get install -y php7.3-xml
-apt-get install -y php7.3-gd
-apt-get install -y php7.3-curl
+apt-get install -y php7.4
+apt-get install -y php7.4-fpm
+apt-get install -y php7.4-mysql
+apt-get install -y php7.4-intl
+apt-get install -y php7.4-mbstring
+apt-get install -y php7.4-json
+apt-get install -y php7.4-cli
+apt-get install -y php7.4-xml
+apt-get install -y php7.4-gd
+apt-get install -y php7.4-curl
+
+a2enmod actions fcgid alias proxy_fcgi
+a2enconf php7.4-fpm
 
 # Some cleanup
 apt autoremove -y
@@ -50,8 +53,8 @@ sudo cp $VAGRANTDIR/mysql.cnf /etc/mysql/conf.d/mysql.cnf
 sudo ln -sf /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/rewrite.load
 
 # Utilise le php.ini de développement
-sudo mv /etc/php/7.3/apache2/php.ini /etc/php/7.3/apache2.php.ini.bk
-sudo cp /usr/lib/php/7.3/php.ini-development /etc/php/7.3/apache2/php.ini
+sudo mv /etc/php/7.4/apache2/php.ini /etc/php/7.4/apache2.php.ini.bk
+sudo cp /usr/lib/php/7.4/php.ini-development /etc/php/7.4/apache2/php.ini
 
 sudo systemctl restart apache2.service
 
