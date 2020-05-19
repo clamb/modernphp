@@ -52,7 +52,7 @@ Avant de commencer, assurez-vous d'avoir VirtualBox installé sur votre ordinate
    2. `vagrant plugin install vagrant-hostmanager`
 6. Le plugin `hostmanager` permet de mettre à jour votre fichier `hosts` pour que l'adresse `modernphp.local` soit
    dirigé vers la machine virtuelle. Pour cela, exécuter la commande `vagrant hostmanager`.
-7. Pour démarrer le téléchargement et l'installation de la machine virtuelle, exécuter la commande `vagrant up`.
+7. Pour démarrer le téléchargement et l'installation de la machine virtuelle, exécuter la commande `vagrant --name=hostname up`.
 8. Vérifier l'installation en vous connectant sur votre machine : `vagrant ssh`.
 9. Vérifier le bon fonctionnement de la machine et des applications en ouvrant l'adresse `http://modernphp.local`
    ou `https://modernphp.local`

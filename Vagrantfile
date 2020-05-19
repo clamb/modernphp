@@ -1,5 +1,100 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+require 'optparse'
+
+def replace(src_filename, dest_filename, str)
+  File.open(dest_filename, "w") do |f|
+    File.open(src_filename).each do |line|
+      new_line = line.gsub("modernphp", str)
+      f.write(new_line)
+    end
+  end
+end
+
+def create_conf_file(name)
+  conf_filename = "#{name}.local.conf"
+
+  conf = <<-CONF
+  <VirtualHost *:80>
+    ServerAdmin admin@example.org
+    DocumentRoot /var/www/#{name}
+    ServerName #{name}.local
+    ErrorLog /var/log/apache2/#{name}_error.log
+    CustomLog /var/log/apache2/#{name}_access.log common
+    <FilesMatch \.php$>
+      SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost"
+    </FilesMatch>
+  </VirtualHost>
+  
+  <VirtualHost *:443>
+    ServerAdmin admin@example.org
+    DocumentRoot /var/www/#{name}
+    ServerName #{name}.local
+    SSLEngine on
+    SSLCertificateFile /etc/ssl/crt/#{name}.local.crt
+    SSLCertificateKeyFile /etc/ssl/crt/#{name}.local.key
+    ErrorLog /var/log/apache2/#{name}_error.log
+    CustomLog /var/log/apache2/#{name}_access.log common
+    <FilesMatch \.php$>
+      SetHandler "proxy:unix:/var/run/php/php7.4-fpm.sock|fcgi://localhost"
+    </FilesMatch>
+  </VirtualHost>
+  
+  <Directory /var/www/#{name}>
+    AllowOverride all
+  </Directory>
+  CONF
+  
+  File.open(conf_filename, "w") do |f|
+    f.write(conf)
+  end
+  
+end
+
+options = {}
+option_parser = OptionParser.new do |opts|
+  opts.banner = "Usage: vagrant --name=NAME up"
+
+  opts.on("-nMANDATORY", "--name=MANDATORY", "Name of the machine") do |name|
+    options[:name] = name
+  end
+end
+
+option_parser.parse!
+
+if ARGV[0] == "up"
+  if options[:name].nil?
+    puts option_parser.help
+    exit 1
+  end
+  create_conf_file(options[:name])
+  plist_file = "#{options[:name]}.sequel_pro.plist"
+  replace('sequel_pro_modernphp.plist', plist_file, options[:name])
+  replace('setup_template.sh', 'setup.sh', options[:name])
+  File.open(".config", "w") do |f|
+    f.write("name=#{options[:name]}")
+  end
+end
+
+name = ''
+
+
+if !File.exists?(".config")
+  puts "Missing configuration file (.config)"
+  exit 1
+end
+
+File.open(".config", "r").each do |line|
+  if /^name=(\w+)/.match(line)
+    name = $1
+  end
+end
+
+if name == ''
+  puts "Missing name=<name> inside .config"
+  exit 1
+end
+
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -13,7 +108,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "bento/ubuntu-20.04"
-  config.vm.box_version = "202004.27.0"
+  config.vm.box_version = "202005.12.0"
   config.vm.network :private_network, :auto_network => true
 
   # Disable automatic box update checking. If you disable this, then
@@ -21,7 +116,7 @@ Vagrant.configure("2") do |config|
   # `vagrant box outdated`. This is not recommended.
   # config.vm.box_check_update = false
 
-  config.vm.hostname = "modernphp.local"
+  config.vm.hostname = "#{name}.local"
   config.hostmanager.enabled = true
   config.hostmanager.manage_host = true
   config.hostmanager.manage_guest = true
@@ -45,7 +140,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "./www", "/var/www/modernphp", :owner => 'www-data', :group => 'www-data'
+  config.vm.synced_folder "./www", "/var/www/#{name}", :owner => 'www-data', :group => 'www-data'
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -57,7 +152,7 @@ Vagrant.configure("2") do |config|
   #
   #   # Customize the amount of memory on the VM:
     vb.memory = "1024"
-    vb.name = "modernphp-ubuntu-php7"
+    vb.name = "#{name}-ubuntu-php7"
   end
   #
   # View the documentation for the provider you are using for more
